@@ -43,6 +43,19 @@ Resultset = ResultProxy.fetchall()
 Resultset
 
 
+# IN
+query = db.select([person.columns.last_name]).where(person.columns.first_name.in_(['Alex', 'bob']))
+ResultProxy = connection.execute(query)
+Resultset = ResultProxy.fetchall()
+Resultset
+
+
+# RAW SQL with sqlAlchemy
+res = engine.execute("SELECT * FROM person WHERE first_name != 'Alex'")
+for r in res:
+    print(r)
+
+
 # convert to a dataframe
 import pandas as pd
 
