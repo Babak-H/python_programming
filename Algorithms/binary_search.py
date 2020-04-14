@@ -262,28 +262,3 @@ def integer_square_root(k):
 
 
 print(integer_square_root(15))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
