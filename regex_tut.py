@@ -284,24 +284,3 @@ def split_non_alpha(s):
     return (s[:pos], s[pos], s[pos+1:])
 
 print(split_non_alpha("#include'blah.php"))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
