@@ -35,7 +35,7 @@ namespace CssPGAutomation
 
             // enter username and password to login page:
             driver1.FindElement(By.Name("username")).SendKeys("habibnejad.b");
-            driver1.FindElement(By.Name("password")).SendKeys("MoeMoe1990" + Keys.Enter);
+            driver1.FindElement(By.Name("password")).SendKeys("*****" + Keys.Enter);
 
             // wait for page to load then click on Ok button
             driver1.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
