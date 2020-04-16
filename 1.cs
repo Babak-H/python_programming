@@ -48,7 +48,7 @@ namespace CssPGAutomation
             // enter credentials for css web page:
             driver2.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             driver2.FindElement(By.Id("p_loginid")).SendKeys("cp9974");
-            driver2.FindElement(By.Id("p_loginpass")).SendKeys("MoeMoe33" + Keys.Enter);
+            driver2.FindElement(By.Id("p_loginpass")).SendKeys("*****" + Keys.Enter);
 
             ////string mpms = xlRange.Cells[i, 8].Value2.ToString();
             /*
