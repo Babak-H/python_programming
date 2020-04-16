@@ -21,7 +21,7 @@ namespace CotyAuto
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
             //driver.FindElement(By.Name("username")).SendKeys("damian_kuklo");
             driver.FindElement(By.XPath("//body/div/form/fieldset/div[3]/label/input")).SendKeys("damian_kuklo");
-            driver.FindElement(By.Name("password")).SendKeys("Mjkl0987" + Keys.Enter);
+            driver.FindElement(By.Name("password")).SendKeys("******" + Keys.Enter);
 
             // Changing from the default search option for type->all search mode:
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
