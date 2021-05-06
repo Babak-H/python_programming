@@ -1857,7 +1857,7 @@ method => function that is associated with a class (difference between method an
 attribute => variable that is associated with a class
 
 when you create methods within class they recieve the instance as "first argument" automatically, by convention we call 
-it "self"
+it self
 '''
 
 class Employee:
