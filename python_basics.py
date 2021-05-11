@@ -2533,4 +2533,39 @@ try:
 except IndexError:
     print("index not in the list")
         
+              
+# doc string
+def square(x):
+    """Returns the square of the argument x"""
+    return x*x
+
+square.__doc__ # => will return 'Returns the square of the argument x'
+              
+              
+s = "fox"
+s.rjust(4)  # adds one space to start of the string => ' fox'
+              
+ 
+# ['hello', 'world'] ==> ['HELLO', 'WORLD']
+[s.upper for s in ['hello', 'world']]
+           
+
+# add space to both sides of a string
+s = "a"
+s.center(3)  # ' a '
+              
+              
+x = (1,2,3)
+set(x)   # {1, 2, 3}
+              
+
+list_keys = ['a', 'b']
+list_values = [['x', 'y'], [1, 2]]
+              
+list(zip(list_keys, list_values))   #  [('a', ['x', 'y']), ('b', [1, 2])]
+              
+              
+              
+                
+  
 
