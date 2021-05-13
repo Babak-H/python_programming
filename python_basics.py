@@ -17,30 +17,6 @@ line = "I like bbq"
 result = split_and_join(line)
 print(result)
 
-
-# how many times a string occurs in a substring:
-def count_substring(string, substring):
-    count = 0
-    num = 0
-    for i in range(len(string)):
-        if string[i] == substring[num]:
-            num = num+1
-        else:
-            num = 0
-        if num == len(substring):
-            count = count + 1
-            num = 0
-        return count
-
-string = "bad fox jumped over good dog , bad fox"
-sub_string = "bad fox"  
-count = count_substring(string, sub_string)
-print(count)
-# easier way to do same thing:
-message = "bad fox jumped over good dog , bad fox"
-print(message.lower().count('bad fox'))
-
-
 # character methods
 # .isalnum(), isalpha(), isdigit(), islower(), isupper()  : all return true or false
 s = "Apple"
@@ -77,21 +53,6 @@ def solve(s):
 
 s = "my name is babak"
 result = solve(s)
-print(result)
-
-
-# if a character in string is lower case make it upper and vice versa then return the string
-def swap_case(s):
-    l = list(s)
-    for i in range(len(l)):
-        if(l[i].isupper()):
-            l[i] = l[i].lower()
-        else:
-            l[i] = l[i].upper() 
-    return "".join(l)
-
-s = "Today Weather is gooD"
-result = swap_case(s)
 print(result)
 
 
@@ -218,19 +179,6 @@ def is_leap(year):
 year = 2021
 print(is_leap(year))
 
-# for two given points calculate eucledian distance in python:
-x = [1,2]
-y= [3,4]
-
-def euclideanDistance(inst1, inst2):
-    dist = 0
-    for i in range(len(inst1)):
-        dist += pow((inst1[i] - inst2[i]), 2)
-    return round(math.sqrt(dist), 2)
-
-print(euclideanDistance(x, y))
-
-
 # Efficient way to convert string from split function to int in Python
 test = '8743-12083-15'
 lst_int = [int(x) for x in test.split("-")]
@@ -255,8 +203,7 @@ in python you can't create an empty list and then assign a value by index to it.
 j = []
 j[0] = 1 this will return error
 
-instead:
-j.append(1)
+instead  => j.append(1)
 
 How to clone or copy a list?
 With "new_list = my_list", you don't actually have two lists. The assignment just copies the reference to
@@ -352,16 +299,6 @@ sum(numbers)
 # length of list
 print(len(lst))
 
-# find second smallest number in a inner list
-p_list = []
-for _ in range(0, int(input())):
-    p_list.append([input(), float(input())])
-
-# for name, marks in marksheet : this is how we iterate inner lists with two array
-# then we select mark
-# and use set to remove duplicates
-second_low = sorted(list(set([marks for name, marks in p_list])))[1]
-
 # check if all values in list are greater than a certain number
 my_lst = [29, 500, 43]
 all(i >= 300 for i in my_lst)
@@ -398,7 +335,6 @@ tuple(l)
 # you can't add to tuple or remove from it when it is already created
 tup = ('history', 'math', 'physics')
 
-
 # Sort a list of tuples by 2nd item (integer value)
 l = [('abc', 121),('abc', 231),('abc', 148), ('abc',221)]
 '''
@@ -407,7 +343,6 @@ key should be a function that identifies how to retrieve the comparable element 
 In your case, it is the second element of the tuple, so we access [1]
 '''
 sorted(l, key=lambda x: x[1])
-
 
 # set : sets are used for membership testing and eliminating duplicate entries.
 print(set('HackerRanks'))  # {'R', 's', 'n', 'H', 'a', 'c', 'r', 'e', 'k'}
@@ -418,7 +353,6 @@ print(set({'Hacker' : 'DOSHI', 'Rank' : 616 }))
 def averge(array):
     return sum(set(array)) / len(set(array))
 
-
 s1 = {1,2,3,4,5}
 s1.add(6)
 s1.update([6,7,8])
@@ -428,7 +362,6 @@ print(s1)
 s1.remove(6)
 s1.discard(7)
 print(s1)
-
 
 # there is no order for values in sets, so each time you run it, it will show new values
 courses = {'one', 'two', 'three'}
@@ -529,8 +462,8 @@ users = [
 print(users.sort(key=itemgetter('join_date')))
 print(users.sort(key=itemgetter('age'), reverse=True))
 
-# MUTABLE : can change it => list, dict, set, byte array
-# IMMUTABLE : cant change it => int, float, complex, string, tuple, frozen set [note: immutable version of set], bytes
+# MUTABLE : can change it => list, dict, set, byteArray
+# IMMUTABLE : can't change it => int, float, complex, string, tuple, frozen set [note: immutable version of set], bytes
 # a mutable object can change its state or contents and immutable objects cannot.
 
 a = 12
@@ -550,18 +483,6 @@ for i in range(n):
 n = 6
 for i in range(1, n+1):
     print(i, sep='', end='', flush=True)  # prints everything in one line
-
-# write a program that prints numbers from 1 to 50, for multiples of 3 print "Fizz", for mutilples of 5 print "Buzz" 
-# for both print "FizzBuzz"
-for i in range(1, 51):
-    if(i % 3 == 0 and i % 5 == 0):
-        print("FizzBuzz")
-    elif (i % 3 == 0):
-        print("Fizz")
-    elif(i % 5 == 0):
-        print("Buzz")
-    else:
-        print(i)
 
 # How to Generate a Random Number in Python
 import random
@@ -663,8 +584,8 @@ def some_function():
 if outer_condition:
     some_function()
 
-
 ####### SameValue  VS  Same Object #######
+
 a = [1,2,3]
 b = [1,2,3]
 print(a == b) # checks if both objects have same value => True
@@ -672,7 +593,6 @@ print(a == b) # checks if both objects have same value => True
 print(id(a))
 print(id(b))
 print(a is b) # checks if both objects are one in memory => False
-
 
 ####### assert #######
 '''
@@ -684,12 +604,10 @@ assert True # nothing happens
 '''
 assert False  # AssertionError
 
-
 ###################### loops ######################
 # loop over an string
 for letter in 'Hello':
     print(letter)
-
 
 # Skip first entry in for loop in python
 cars = [1,2,3,4]
@@ -707,7 +625,7 @@ while True:
     x += 1
 
 # Fibonaci sequence
-a,b = 0,1
+a, b = 0, 1
 for _ in range(0, 10):
     print(a)
     a,b = b, a+b
@@ -723,7 +641,6 @@ for elem in elements:
 for count, elem in enumerate(elements):
     print(count, elem)
 
-
 ## else clause after loop
 my_list = [1,2,3,4]
 
@@ -733,7 +650,8 @@ for i in my_list:
         break
 else:
     print("this will be executed if we didnt have any breaks")
-    
+  
+
 j = 0
 while j < 5:
     print(j)
@@ -742,7 +660,6 @@ while j < 5:
         break
 else:
     print("this will be executed if we didnt have any breaks")
-
 
 ###################### Iterators and Iterables ######################
 
@@ -757,7 +674,6 @@ i_nums = iter(nums)
 print(i_nums.__next__())
 print(i_nums.__next__())
 print(i_nums.__next__())
-
 
 # a class that works same as built-in range function
 class MyRange:
@@ -781,7 +697,6 @@ print(next(nums))
 for num in nums:
     print(num)
 
-
 # Exhausting Iterators : in python3 you need to cast zip object as list to see all its values at once
 names = ['Peter parker', 'Clark kent', 'Wade Wilson', 'Bruce Wayne']
 heroes = ['spiderman', 'superman', 'deadpool', 'batman']
@@ -790,11 +705,10 @@ identities = zip(names, heroes)
 print(identities)
 print(list(identities))
 
-
 ###################### Itertools ######################
-# #itertools helps with iterating through sets of data
+# itertools helps with iterating through sets of data
 from itertools import *
-
+import itertools
 a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 b= ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
 c = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
@@ -806,8 +720,6 @@ for i in chain(a, b, c):
 print (list(chain(a,b,c)))
 print (list(chain(a[:2], b[:2], c[1:3])))
 
-
-import itertools
 counter = itertools.count()
 print(next(counter))
 print(next(counter))
@@ -827,7 +739,6 @@ print(c)
 c.most_common(1) 
 c.most_common(2) 
 
-
 # combinations : order of a combo does not matter, a,b = b,a
 # permutation : order does matter, a,b != b,
 letters = ['a', 'b', 'c', 'd']
@@ -839,7 +750,6 @@ print(list(results))
 
 results_1 = itertools.permutations(letters, 2)
 print(list(results_1))
-
 
 # zip() functions ties two lists together in a new list of tuples
 first = ['Bucky', 'Tom', 'Taylor']
@@ -964,7 +874,6 @@ class Geeks:
 GeeksforGeeks = Geeks() 
 print(vars(GeeksforGeeks))
 
-
 ##### Function Annotations ####
 # without annotation
 def foo(prefix, suffix):
@@ -1007,8 +916,8 @@ display_time_fixed()
 time.sleep(1)
 display_time_fixed()
 
-
 ###################### Modules ######################
+
 # how to import module or other python files
 from custom_module import find_index, test
 # import custom_module as cm  
@@ -1020,7 +929,6 @@ print(index)
 print(test)
 
 # using the "from module import *" is a really bad practice
-
 
 ###################### List Comprehensions , lambda fuctions, map ######################
 nums = [1,2,3,4,5]
@@ -1056,23 +964,11 @@ def fibonacci(n):
         if(i == 0 or i == 1):
             list.append(i)
         else:
-            list.append(list[i-1]+list[i-2])
+            list.append(list[i-1] + list[i-2])
     return list
 
 n = 5
 print(list(map(cube, fibonacci(n))))
-
-# slicing strings and using map function
-n = int(input())  # this only receives the first line of input
-student_marks = {}
-for _ in range(n):   # we use _ since we just want to iterate
-    line = input().split()
-    name, scores = line[0], line[1:]
-    # map function applies float to all elements of the list
-    scores = map(float, scores)
-    student_marks[name] = scores
-query_name = input()
-print("{0:.2f}".format(sum(student_marks[query_name])/ len(student_marks[query_name])))
 
 # if else inside a list
 y_raw = ['ham', 'spam', 'spam']
@@ -1092,41 +988,9 @@ a = [ [1,2], [2,9], [3,7] ]
 b = [el[1] for el in a]
 print(b)
 
-# Iterating through 2 dimensional lists in 1 line
-sandwiches = [["bacon", "banana"], ["ham", "salami", "cheese"]]
-prefs = {"bacon": 5, "ham": -2, "salami": 1}
-scores = [ [ ", ".join(i), sum( prefs[j] for j in i if j in prefs) ] for i in sandwiches ]
-print(scores)
-
 # lambda function:
 answer = lambda x: print(x*7)
 answer(5)
-
-'''
-change a dictionary to two lists:
-    stocks.keys() = gives you a list of first items (keys) of the dictionary.
-    stocks.values() = gives you a list of second items (values) of the dictionary.
-you can't min/max a dictionary but you can min/max it if you change it to a zipped list.
-
-if you want to min/max a dictionary based on it's values give the zipped list the values or the other way around.
-zipped list sorts based on the first value in a (x, y).
-'''
-stocks = {
-    'GOOG': 520.54,
-    'FB': 76.45,
-    'YHOO': 39.28,
-    'AMZN': 306.21,
-    'APPL': 99.76
-}
-
-min = min(zip(stocks.values(), stocks.keys()))
-max = max(zip(stocks.values(), stocks.keys()))
-sorted_num = sorted(zip(stocks.values(), stocks.keys()))
-sorted_word = sorted(zip(stocks.keys(), stocks.values()))
-print(min, max)
-print(sorted_num)
-print(sorted_word)
-
 
 # using zip : zip will stop when shortest list stops
 x = [1,2,3,4]
@@ -1135,14 +999,12 @@ y = [1,4,6]
 for i,j in zip(x, y):
     print(i / j)
 
-
 # sort() / sorted() function with lambda expressions => using lambda to sort by last name
 names = ['Alf Zed', 'Mike Mo', 'Steve Jobs']
 names.sort(key=lambda x: x.split()[-1].lower)  # sorts based on the second part of each string
 
 people = [('A', 28), ('B', 13), ('C', 58)]
 people.sort(key=lambda x: x[1], reverse=True) # this will change the original list
-
 
 ###################### OS Module ######################
 import os
@@ -1260,36 +1122,6 @@ while current_weight > goal_weight:
     current_weight -= avg_loss_week
 print(f'reach goal in {(end_date - start_date).days} days')
 
-'''
-*** interview question ***
-given a timestamp date "2019-07-01 12:42:33" return string of "19Jul1B"
-hours : 0-7 A 7-14 B 14-21 C 21-24 D  it should be the shown after start of the hour (7:00:01 accepted)
-'''
-def DateChecker(timestamp):
-    date = re.match(r'(\d{4})\-(\d{2})\-(\d{2}) (\d{2})\:(\d{2})\:(\d{2})', timestamp)
-    year = date.group(1)[2:]
-    month = int(date.group(2))
-    day = int(date.group(3))
-    hour = int(date.group(4))
-    mint = int(date.group(5))
-    sec = int(date.group(6))
-    string = ""
-    string += year
-    string += calendar.month_abbr[month]
-    string += str(day)
-
-    if ((hour >= 0 and hour < 7) and (mint > 0 or sec > 0)):
-        string += "A"
-    elif ((hour >= 7 and hour < 14) and (mint > 0 or sec > 0)):
-        print(mint, sec)
-        string += "B"
-    elif ((hour >= 14 and hour < 24) and (mint > 0 or sec > 0)):
-        string += "C"
-    return string
-
-print(DateChecker("2019-07-01 12:00:33"))
-
-
 ###################### Context Managers ######################
 
 # context managers deal with opening and closing files in python
@@ -1395,141 +1227,6 @@ def outer():
 
 outer()
 
-###################### Working With Files ######################
-
-# writing and reading from text file
-fw = open('Files/sample.txt', 'w')
-fw.write('writing some stuff on my text file\n')
-fw.write('i like bacon\n n shit')
-fw.close()
-# read
-fr = open('Files/sample.txt', 'r')
-text = fr.read()
-print(text)
-fr.close()
-
-# How to read a text file into a list with Python
-lines = text_file.read().split(',')
-#or
-lines = text_file.read().split('\n')
-
-# this is called context manager, and it automatically closes the file (it's yielded inside the with clause)
-with open('text.txt', 'r') as f:
-    pass
-print(f.closed)
-
-# How can I open multiple files using “with open” in Python?
-with open('a.txt', 'w') as a, open('b.txt', 'w') as b:
-    print(a.name, b.name)  # print name of both files
-
-with open("./Files/sample.txt", 'r') as f:
-    # print(f.read())   => reads the whole text (if files are too big do not do this!!)
-    # print(f.readline()) => reads one line of file
-    # print(f.readline()) => reads the next line
-    # print(f.readlines())  # reads all lines at once and puts them inside a list
-
-    # this is most efficient way, because it does not read all lines of file at once
-    for line in f:  
-        print(line, end='')
-
-
-with open("./Files/sample.txt", 'r') as f:
-    contents = f.read(100) # reads first 100 characters of the file
-    print(contents)
-    size_to_read = 100
-    contents = f.read(size_to_read) # this will read from characters 100 to 200
-    size_to_read = 100
-    contents = f.read(size_to_read) # reads the next 100 (or less remaining) characters
-
-# optimized way for very large files:
-with open("./Files/sample.txt", 'r') as f:
-    size_to_read = 20
-    contents = f.read(size_to_read)
-    # continue until any unread characters are left in this file
-    while len(contents) > 0:
-        print(contents)
-        contents = f.read(size_to_read)  # go 20 characters ahead
-        print(f.tell()) # shows current position of reading
-
-# if file doesnt exist, it will create it, but if it does, this method overwrites the file!!
-# if file exists, use 'a' instead of 'w' to "append" to file
-with open('./Files/test.txt', 'w') as f:
-    f.write("Test")
-    f.write("Test")
-    f.writelines("\nHello this is a test")
-
-# working with two files, read from one and write in the other:
-with open('./Files/test.txt', 'r') as rf:
-    with open('./Files/test_copy.txt', 'w') as wf:
-        for line in rf:
-            wf.write(line)
-
-# working with non-text files, we use binary instead of string, rb, wb instead of r, w
-with open('./Files/apple.jpg', 'rb') as rf:
-    with open('./Files/apple_copy.jpg', 'wb') as wf:
-        for line in rf:
-            wf.write(line)
-
-
-# writing to non-text files in chuncks of bites
-with open('./Files/apple.jpg', 'rb') as rf:
-    with open('./Files/apple_copy_1.jpg', 'wb') as wf:
-        chunk_size= 4096
-        rf_chunk = rf.read(chunk_size)
-        
-        while len(rf_chunk) > 0:
-            wf.write(rf_chunk)
-            rf_chunk = rf.read(chunk_size)  # go 4096 bytes ahead
-
-###################### CSV Files ######################
-import csv
-# read from file
-with open("./Files/Salaries.csv", 'r') as csv_file:
-    csv_reader = csv.reader(csv_file)
-    # skip the first line
-    next(csv_reader)
-    for line in csv_reader:
-        print(line)  # print all lines
-        print(line[2]) # print third element of each line
-
-# read from file and save to new file
-with open("./Files/Salaries.csv", 'r') as csv_file:
-    csv_reader = csv.reader(csv_file)
-    with open('./Files/Salaries_copy.csv', 'w') as new_file:
-        csv_writer = csv.writer(new_file, delimiter='\t')
-        for line in csv_reader:
-            csv_writer.writerow(line)
-
-
-# DictReader considers first line as keys of dictionary and turns each line into a dictionary
-with open("./Files/Salaries.csv", 'r') as csv_file:
-    csv_reader = csv.DictReader(csv_file)
-    idx = 0
-    for line in csv_reader:
-        print(line['EmployeeName'])
-        print()
-        idx += 1
-        if idx > 2 : break
-
-# to remove a column: 1- remove it from list of headers  2- delete it from dictionary when writing it
-with open("./Files/Salaries.csv", 'r') as csv_file:
-    csv_reader = csv.DictReader(csv_file)
-
-    with open('./Files/Salaries_copy.csv', 'w') as new_file:
-        fieldNames = ['Id','EmployeeName','JobTitle','BasePay','OvertimePay','OtherPay','Benefits','TotalPay','TotalPayBenefits','Year','Notes','Agency']
-        csv_writer = csv.DictWriter(new_file, fieldnames=fieldNames, delimiter='\t')
-        csv_writer.writeheader()
-
-        for line in csv_reader:
-            del line['Status']
-            csv_writer.writerow(line)
-
-
-# parsing a tab-separated file in Python
-with open("tab-separated-values") as tsv:
-    for line in csv.reader(tsv, dialect="excel-tab"): #You can also use delimiter="\t" rather than giving a dialect.
-        # ...
-
 ###################### Exception Handling ######################
 # all errors : https://www.tutorialspoint.com/python/python_exceptions.html
 
@@ -1588,7 +1285,6 @@ print(next(my_nums)) # 3
 for num in my_nums:
     print(num)
 
-
 # generator comprehension (similar to list comprehension)
 my_nums = (x*x for x in [1,2,3,4,5])
 print(my_nums)
@@ -1636,7 +1332,6 @@ def my_map(func, arg_list):
 squares = my_map(square, [1, 2, 3, 4, 5])
 print(squares)
 
-
 # return a first class function as output of higher order function
 def logger(msg):
     def log_message():
@@ -1646,7 +1341,6 @@ def logger(msg):
 print(logger('Hi!'))
 log_hi = logger('Hi!')  # here we set the log_hi variable to be a function equal to log_message()
 log_hi() # here we execute it
-
 
 # another example of return first class function as output from higher order function
 def html_tag(tag):
@@ -1659,7 +1353,6 @@ print_h1('Test Headline')
 
 print_p = html_tag('p')  # here we set print_p as a function equal to wrap_text()
 print_p('Test paragraph') # here we execute it with an argument
-
 
 ###################### CLOSURE ######################
 '''
@@ -1743,7 +1436,6 @@ know the object has been decorated.
 A closure is an anonymous function that refers to its parameters or other variables outside its scope.
 So basically, decorators uses closures.
 '''
-
 # we give *args, **kwargs argument to the decorator function so we will be able to
 # add arguments to wrapper function without raising errors
 def decorator_function(original_function):
@@ -1779,7 +1471,6 @@ def display_info(name, age):
     
 display_info("bob", 27)
 
-
 ## decorator class, this way we can easily check the arguments before fedding them to the function
 class decorator_class(object):
     # get the method
@@ -1795,28 +1486,26 @@ def display_inf(name, age):
     print(name, age)
     
 display_inf("bob", 27)
-
-
-from functools import wraps
-
+      
 def my_logger(orig_func):
     # import it inside the function, since we only need it here
     import logging
-    logging.basicConfig(filename= orig_func.__name__+'.log', level=logging.INFO)
-    
+    logging.basicConfig(filename=orig_func.__name__+'.log', level=logging.INFO)
+
     @wraps(orig_func)
     def wrapper(*args, **kwargs):
-        logging.info("running '{}' with arguments '{}'".format(orig_func.__name__, args))
+        logging.info("running '{}' with arguments '{}'".format(
+            orig_func.__name__, args))
         return orig_func(*args, **kwargs)
     return wrapper
 
-@my_logger 
+@my_logger
 def display_inf(name, age):
     print(name, age)
-    
+
 display_inf("bob", 27)
 
-
+      
 def my_timer(orig_func):
     import time
     # we wrap this inside a logger, because we want to feed this decorator method, to another decorator later
@@ -1834,7 +1523,6 @@ def display_inf(name, age):
     print(name, age)
     
 display_inf("bob", 27)
-
 
 # one function with two decorators
 '''
@@ -1970,7 +1658,6 @@ dev_2 = Developer("User", "Test", 60000, "Java")
 print(dev_1.prog_lang)
 print(dev_2.first)
 
-
 class Manager(Employee):
     def __init__(self, first, last, pay, employees=None):
         super().__init__(first, last, pay)
@@ -2038,10 +1725,8 @@ print('test'.__len__())
 
 print(emp_1 + emp_2)
 
-
 # Getters, Setters, Deleters
 class EmployeeY:
-    
     def __init__(self, first, last, pay):
         self.first = first
         self.last = last
@@ -2082,7 +1767,6 @@ del emp_1.fullname
 print(emp_1.first)
 
 
-
 '''
 whenever python runs a file, it first sets a few special variables, and one of those variables is __name__ and it
 sets it to __main__, but if we import this module (file) in other file, it will be different.
@@ -2097,7 +1781,142 @@ if __name__ == "__main__":
     main()
 else:
     print("running from import")
+      
+######################## Working With Files #######################
 
+# writing and reading from text file
+fw = open('Files/sample.txt', 'w')
+fw.write('writing some stuff on my text file\n')
+fw.write('i like bacon\n n shit')
+fw.close()
+# read
+fr = open('Files/sample.txt', 'r')
+text = fr.read()
+print(text)
+fr.close()
+
+# How to read a text file into a list with Python
+lines = text_file.read().split(',')
+#or
+lines = text_file.read().split('\n')
+
+# this is called context manager, and it automatically closes the file (it's yielded inside the with clause)
+with open('text.txt', 'r') as f:
+    pass
+print(f.closed)
+
+# How can I open multiple files using “with open” in Python?
+with open('a.txt', 'w') as a, open('b.txt', 'w') as b:
+    print(a.name, b.name)  # print name of both files
+
+with open("./Files/sample.txt", 'r') as f:
+    # print(f.read())   => reads the whole text (if files are too big do not do this!!)
+    # print(f.readline()) => reads one line of file
+    # print(f.readline()) => reads the next line
+    # print(f.readlines())  # reads all lines at once and puts them inside a list
+
+    # this is most efficient way, because it does not read all lines of file at once
+    for line in f:  
+        print(line, end='')
+
+
+with open("./Files/sample.txt", 'r') as f:
+    contents = f.read(100) # reads first 100 characters of the file
+    print(contents)
+    size_to_read = 100
+    contents = f.read(size_to_read) # this will read from characters 100 to 200
+    size_to_read = 100
+    contents = f.read(size_to_read) # reads the next 100 (or less remaining) characters
+
+# optimized way for very large files:
+with open("./Files/sample.txt", 'r') as f:
+    size_to_read = 20
+    contents = f.read(size_to_read)
+    # continue until any unread characters are left in this file
+    while len(contents) > 0:
+        print(contents)
+        contents = f.read(size_to_read)  # go 20 characters ahead
+        print(f.tell()) # shows current position of reading
+
+# if file doesnt exist, it will create it, but if it does, this method overwrites the file!!
+# if file exists, use 'a' instead of 'w' to "append" to file
+with open('./Files/test.txt', 'w') as f:
+    f.write("Test")
+    f.write("Test")
+    f.writelines("\nHello this is a test")
+
+# working with two files, read from one and write in the other:
+with open('./Files/test.txt', 'r') as rf:
+    with open('./Files/test_copy.txt', 'w') as wf:
+        for line in rf:
+            wf.write(line)
+
+# working with non-text files, we use binary instead of string, rb, wb instead of r, w
+with open('./Files/apple.jpg', 'rb') as rf:
+    with open('./Files/apple_copy.jpg', 'wb') as wf:
+        for line in rf:
+            wf.write(line)
+
+
+# writing to non-text files in chuncks of bites
+with open('./Files/apple.jpg', 'rb') as rf:
+    with open('./Files/apple_copy_1.jpg', 'wb') as wf:
+        chunk_size= 4096
+        rf_chunk = rf.read(chunk_size)
+        
+        while len(rf_chunk) > 0:
+            wf.write(rf_chunk)
+            rf_chunk = rf.read(chunk_size)  # go 4096 bytes ahead
+
+###################### CSV Files ######################
+import csv
+# read from file
+with open("./Files/Salaries.csv", 'r') as csv_file:
+    csv_reader = csv.reader(csv_file)
+    # skip the first line
+    next(csv_reader)
+    for line in csv_reader:
+        print(line)  # print all lines
+        print(line[2]) # print third element of each line
+
+# read from file and save to new file
+with open("./Files/Salaries.csv", 'r') as csv_file:
+    csv_reader = csv.reader(csv_file)
+    with open('./Files/Salaries_copy.csv', 'w') as new_file:
+        csv_writer = csv.writer(new_file, delimiter='\t')
+        for line in csv_reader:
+            csv_writer.writerow(line)
+
+
+# DictReader considers first line as keys of dictionary and turns each line into a dictionary
+with open("./Files/Salaries.csv", 'r') as csv_file:
+    csv_reader = csv.DictReader(csv_file)
+    idx = 0
+    for line in csv_reader:
+        print(line['EmployeeName'])
+        print()
+        idx += 1
+        if idx > 2 : break
+
+# to remove a column: 1- remove it from list of headers  2- delete it from dictionary when writing it
+with open("./Files/Salaries.csv", 'r') as csv_file:
+    csv_reader = csv.DictReader(csv_file)
+
+    with open('./Files/Salaries_copy.csv', 'w') as new_file:
+        fieldNames = ['Id','EmployeeName','JobTitle','BasePay','OvertimePay','OtherPay','Benefits','TotalPay','TotalPayBenefits','Year','Notes','Agency']
+        csv_writer = csv.DictWriter(new_file, fieldnames=fieldNames, delimiter='\t')
+        csv_writer.writeheader()
+
+        for line in csv_reader:
+            del line['Status']
+            csv_writer.writerow(line)
+
+
+# parsing a tab-separated file in Python
+with open("tab-separated-values") as tsv:
+    for line in csv.reader(tsv, dialect="excel-tab"): #You can also use delimiter="\t" rather than giving a dialect.
+        # ...
+      
 ######################## JSON ########################
 # json = JavaScript object Notation
 import json
@@ -2168,7 +1987,6 @@ for dat in data:
 with open("./Files/to_do.json", "w") as f:
     json.dump(compeleted_dict, f, indent=2)
 
-
 ######################## Requests ########################
 # download and read data => pip install requests
 import requests
@@ -2216,7 +2034,6 @@ try:
 except requests.exceptions.ReadTimeout:
     print("Took more than 3 seconds to read the data")
 
-
 ######################## URLlib ########################
 
 # download file from web with request and assign it a random name
@@ -2246,7 +2063,6 @@ def download_stock_data(csv_url):
     fx.close()
 
 download_stock_data(goog_url)
-
 
 ######################## BeautifulSoup ########################
 # given a url, download every link available on that page
@@ -2287,7 +2103,6 @@ def get_single_item_data(item_url):
 
 #trade_spider(3)
 get_single_item_data("http://mihandownload.com/2014/11/displayfusions-pro.php")
-
 
 # download text from a web page and get all actual words from that tex
 # operator class lets you to work with data types in python.
@@ -2349,7 +2164,6 @@ print(img.size)
 print(img.format)
 # shows the image in your
 img.show()
-
 
 ######################### Python + Postgres ##########################
 # pip install psycopg2 => engine to connect from python to postgres
@@ -2505,7 +2319,6 @@ def quack_and_fly_fixed(thing):
 quack_and_fly_fixed(d)
 quack_and_fly_fixed(p)
 
-
 person = {'name' : 'Jess', 'age' : 23, 'job' : 'Programmer'}
 
 # non-pythonic way
@@ -2531,41 +2344,5 @@ if len(my_list) >= 6:
 try:
     print(my_list[5])
 except IndexError:
-    print("index not in the list")
-        
+    print("index not in the list")                      
               
-# doc string
-def square(x):
-    """Returns the square of the argument x"""
-    return x*x
-
-square.__doc__ # => will return 'Returns the square of the argument x'
-              
-              
-s = "fox"
-s.rjust(4)  # adds one space to start of the string => ' fox'
-              
- 
-# ['hello', 'world'] ==> ['HELLO', 'WORLD']
-[s.upper for s in ['hello', 'world']]
-           
-
-# add space to both sides of a string
-s = "a"
-s.center(3)  # ' a '
-              
-              
-x = (1,2,3)
-set(x)   # {1, 2, 3}
-              
-
-list_keys = ['a', 'b']
-list_values = [['x', 'y'], [1, 2]]
-              
-list(zip(list_keys, list_values))   #  [('a', ['x', 'y']), ('b', [1, 2])]
-              
-              
-              
-                
-  
-
