@@ -242,6 +242,43 @@ df["f_datetime"] = pd.to_datetime(df["unf_datetime"], format="%m%d%Y %H:%M:%S")
 
 ####################################### Reading from database with Pandas #######################################
 
+# Load pandas and sqlalchemy's create_engine
+import pandas as pd
+from sqlalchemy import create_engine
+# Create database engine to manage connections
+engine = create_engine("sqlite:///data.db")
+# Load entire weather table by table name
+weather = pd.read_sql("weather", engine)
+
+# Create database engine to manage connections
+engine = create_engine("sqlite:///data.db")
+# Load entire weather table with SQL
+weather = pd.read_sql("SELECT * FROM weather", engine)
+print(weather.head())
+
+# Create database engine
+engine = create_engine("sqlite:///data.db")
+# Write query to get records from Brooklyn
+query = "SELECT * FROM hpd311calls WHERE borough = 'BROOKLYN';"
+# Query the database
+brooklyn_calls = pd.read_sql(query, engine)
+print(brookyn_calls.borough.unique())
+
+# Create database engine
+engine = create_engine("sqlite:///data.db")
+# Write query to get plumbing call counts by borough
+query = "SELECT borough, COUNT(*) FROM hpd311calls WHERE complaint_type = 'PLUMBING'GROUP BY borough;"
+# Query databse and create data frame
+plumbing_call_counts = pd.read_sql(query, engine)
+
+# Query to get heat/hot water call counts by created_date
+query = "SELECT hpd311calls.created_date, COUNT(*) FROM hpd311calls WHERE hpd311calls.complaint_type = 'HEAT/HOT WATER' GROUP BY hpd311calls.created_date;"
+# Query database and save results as df
+df = pd.read_sql(query, engine)
+# View first 5 records
+print(df.head())
+
+####################################### Reading from JSON, API with Pandas #######################################
 
 # Multi-Index and Index Hierarchy
 
