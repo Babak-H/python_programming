@@ -279,6 +279,44 @@ df = pd.read_sql(query, engine)
 print(df.head())
 
 ####################################### Reading from JSON, API with Pandas #######################################
+# Load pandas as pd
+import pandas as pd
+# Load the daily report to a data frame
+pop_in_shelters = pd.read_json("dhs_daily_report.json")
+# View summary stats about pop_in_shelters
+print(pop_in_shelters.describe())
+
+'''
+JSON isn't a tabular format, so pandas makes assumptions about its orientation when loading data. Most JSON data you encounter will be in orientations that pandas 
+can automatically transform into a data frame.
+Sometimes, data is oriented differently. To reduce the file size, it has been split formatted. The try/except block will alert you if there are errors loading the data.
+'''
+try:
+    # Load the JSON with orient specified
+    df = pd.read_json("dhs_report_reformatted.json", orient="split")
+    df["date_of_census"] = pd.to_datetime(df["date_of_census"])
+except ValueError:
+    print("pandas could not parse the JSON.")
+
+
+api_url = "https://api.yelp.com/v3/businesses/search"
+# define parameters
+parameters = {"term": "cafe", "location": "NYC"}
+# Create dictionary that passes Authorization and key string
+headers = {"Authorization": "Bearer {}".format(api_key)}
+
+# Get data about NYC cafes from the Yelp API
+response = requests.get(api_url, headers=headers, params=params)
+# Extract JSON data from the response
+data = response.json()
+
+# Load data to a data frame
+cafes = pd.DataFrame(data["businesses"])
+# View the data's dtypes
+print(cafes.dtypes)
+
+
+
 
 # Multi-Index and Index Hierarchy
 
