@@ -125,7 +125,6 @@ string, max_width = "hello", 6
 result = wrap(string, max_width)
 print(result)
 
-
 ###################### Numbers and numerical values ######################
 import math
 
