@@ -741,6 +741,34 @@ def hello():
 print(hello())  # <b><u><i>Python 3 is superb</i></u></b>
 
 ######################################################################
+def algorithmone(n,b,a):
+     assert(b > 1)
+     q = n
+     k = 0
+     while q != 0:
+        a[k] = q % b
+        q = q / b
+        k++
+
+     return k
+
+print (algorithmone(5,233,676))
+
+# what error will this code produce  => TypeError: 'int' object does not support item assignment, because: 50[42] = 7
+
+
+
+
+
+
+
+
+
+
+
+
+
+######################################################################
 
 '''
 *** What is Python?
