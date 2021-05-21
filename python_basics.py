@@ -1263,7 +1263,57 @@ while True:
     finally:
         print("loop complete.")
 
+# Catch multiple exceptions in one line (except block)
+except (IDontLikeYouException, YouAreBeingMeanException) as e:
+    pass
+      
+# How to properly assert that an exception gets raised in pytest?
+import pytest
 
+def test_passes():
+    with pytest.raises(Exception) as e_info:
+        x = 1 / 0
+
+def test_passes_without_info():
+    with pytest.raises(Exception):
+        x = 1 / 0
+
+def test_fails():
+    with pytest.raises(Exception) as e_info:
+        x = 1 / 1
+
+def test_fails_without_info():
+    with pytest.raises(Exception):
+        x = 1 / 1
+
+# Don't do this. Assertions are caught as exceptions.
+def test_passes_but_should_not():
+    try:
+        x = 1 / 1
+        assert False
+    except Exception:
+        assert True
+
+# Even if the appropriate exception is caught, it is bad style,
+# because the test result is less informative
+# than it would be with pytest.raises(e)
+# (it just says pass or fail.)
+
+def test_passes_but_bad_style():
+    try:
+        x = 1 / 0
+        assert False
+    except ZeroDivisionError:
+        assert True
+
+def test_fails_but_bad_style():
+    try:
+        x = 1 / 1
+        assert False
+    except ZeroDivisionError:
+        assert True
+      
+      
 ###################### GENERATORS ######################
 '''
 generators have better performance than lists. because they dont put all the data into memory at once, instead they 
@@ -1867,55 +1917,33 @@ with open('./Files/apple.jpg', 'rb') as rf:
         while len(rf_chunk) > 0:
             wf.write(rf_chunk)
             rf_chunk = rf.read(chunk_size)  # go 4096 bytes ahead
+      
+# How to get rid of double backslash in python windows file path string?
+# I have dict:
+my_dictionary = {"058498":"table", "064165":"pen", "055123":"pencil"}
+# iterate over it:
+for item in my_dictionary:
+    PDF = r'C:\Users\user\Desktop\File_%s.pdf' %item
+    doIt(PDF)
 
-###################### CSV Files ######################
-import csv
-# read from file
-with open("./Files/Salaries.csv", 'r') as csv_file:
-    csv_reader = csv.reader(csv_file)
-    # skip the first line
-    next(csv_reader)
-    for line in csv_reader:
-        print(line)  # print all lines
-        print(line[2]) # print third element of each line
-
-# read from file and save to new file
-with open("./Files/Salaries.csv", 'r') as csv_file:
-    csv_reader = csv.reader(csv_file)
-    with open('./Files/Salaries_copy.csv', 'w') as new_file:
-        csv_writer = csv.writer(new_file, delimiter='\t')
-        for line in csv_reader:
-            csv_writer.writerow(line)
-
-
-# DictReader considers first line as keys of dictionary and turns each line into a dictionary
-with open("./Files/Salaries.csv", 'r') as csv_file:
-    csv_reader = csv.DictReader(csv_file)
-    idx = 0
-    for line in csv_reader:
-        print(line['EmployeeName'])
-        print()
-        idx += 1
-        if idx > 2 : break
-
-# to remove a column: 1- remove it from list of headers  2- delete it from dictionary when writing it
-with open("./Files/Salaries.csv", 'r') as csv_file:
-    csv_reader = csv.DictReader(csv_file)
-
-    with open('./Files/Salaries_copy.csv', 'w') as new_file:
-        fieldNames = ['Id','EmployeeName','JobTitle','BasePay','OvertimePay','OtherPay','Benefits','TotalPay','TotalPayBenefits','Year','Notes','Agency']
-        csv_writer = csv.DictWriter(new_file, fieldnames=fieldNames, delimiter='\t')
-        csv_writer.writeheader()
-
-        for line in csv_reader:
-            del line['Status']
-            csv_writer.writerow(line)
-
-
-# parsing a tab-separated file in Python
-with open("tab-separated-values") as tsv:
-    for line in csv.reader(tsv, dialect="excel-tab"): #You can also use delimiter="\t" rather than giving a dialect.
-        # ...
+def doIt(PDF):
+    part = MIMEBase('application', "octet-stream")
+    part.set_payload( open(PDF,"rb").read() )
+# get this error:
+IOError: [Errno 2] No such file or directory: 'C:\\Users\\user\\Desktop\\File_055123.pdf'
+      
+# SOLUTION:
+'''
+The double backslash is not wrong, python represents it way that to the user. In each double backslash \\, the first one escapes the second to imply an actual backslash. 
+If a = r'raw s\tring' and b = 'raw s\\tring' (no 'r' and explicit double slash) then they are both represented as 'raw s\\tring'.
+'''
+# So in the PDF path+name:
+item = 'xyz'
+PDF = r'C:\Users\user\Desktop\File_%s.pdf' % item
+print(PDF)  # the representation of the string, also in error messages
+'C:\\Users\\user\\Desktop\\File_xyz.pdf'
+print(PDF)  # "as used"
+C:\Users\user\Desktop\File_xyz.pdf
       
 ######################## JSON ########################
 # json = JavaScript object Notation
@@ -1986,245 +2014,6 @@ for dat in data:
 # to save as json file it would be better to save as list, then each row would be its own dict
 with open("./Files/to_do.json", "w") as f:
     json.dump(compeleted_dict, f, indent=2)
-
-######################## Requests ########################
-# download and read data => pip install requests
-import requests
-
-r = requests.get("https://github.com/Bob-Gohardani/RestFullAPI/blob/master/.gitattributes")
-print(r)  # 200 means ok
-print(r.text)  # use beautifulsoup to parse it
-
-# download and save image with request
-r = requests.get("https://s3-us-east-2.amazonaws.com/aws2-gray-wp01-s3/appleholler-graydientlabs-net/wp-content/uploads/2018/07/03140233/359x217-apple-picking.png")
-if r.ok:
-    with open("./Files/apple.png", 'wb') as f:
-        f.write(r.content)
-else:
-    print("there was an error downloading the file")
-
-r = requests.get("https://s3-us-east-2.amazonaws.com/aws2-gray-wp01-s3/appleholler-graydientlabs-net/wp-content/uploads/2018/07/03140233/359x217-apple-picking.png")
-print(r.status_code)
-print(r.ok)
-print(r.headers)
-
-# instead of writing the parameters for the url in the string, you can write them in a dictionary and send it to url 
-# as params
-payload = {'page' : 2, 'count' : 25}
-r = requests.get('https://httpbin.org/get', params=payload)
-print(r.url)
-
-# POST
-payload = {'username' : 'corey', 'password' : 'testing'}
-r = requests.post('https://httpbin.org/post', data=payload)
-print(r.url)
-r_dict = r.json() # since response is json, we download it in json format instead of text
-r_dict.keys()
-
-# Basic-Auth
-r = requests.get('https://httpbin.org/basic-auth/corey/testing', auth=('corey', 'testing'))
-print(r.text)
-print(r)
-
-
-# timeout : if the result doesnt comeback after 3 seconds throws an error
-try:
-    r = requests.get('https://httpbin.org/delay/5', timeout=3)
-    print(r)
-except requests.exceptions.ReadTimeout:
-    print("Took more than 3 seconds to read the data")
-
-######################## URLlib ########################
-
-# download file from web with request and assign it a random name
-import random
-import urllib.request
-
-def download_web_image(url):
-    name = random.randrange(1,1000)
-    full_name = str(name) + '.jpg'
-    urllib.request.urlretrieve(url, full_name)
-download_web_image('https://i5.walmartimages.ca/images/Large/428/5_r/6000195494285_R.jpg')
-
-
-# download and read CSV file and save it in a csv
-from urllib import request
-
-goog_url = 'http://real-chart.finance.yahoo.com/table.csv?s=GOOG&d=10&e=27&f=2014&g=d&a=2&b=27&c=2014&ignore=.csv'
-def download_stock_data(csv_url):
-    response = request.urlopen(csv_url)
-    csv = response.read()
-    csv_str = str(csv)
-    lines = csv_str.split("\\n")
-    dest_url = r'goog.csv'
-    fx = open("Files/"+ dest_url, "w")
-    for line in lines:
-       fx.write(line + "\n")
-    fx.close()
-
-download_stock_data(goog_url)
-
-######################## BeautifulSoup ########################
-# given a url, download every link available on that page
-import requests
-from bs4 import BeautifulSoup
-
-def trade_spider(max_pages):
-    page = 1
-    while page <= max_pages:
-        url = "http://mihandownload.com/page/" + str(page)
-        # makes connection to the page and stores the results in the variable
-        source_code = requests.get(url)
-        # .text gets all of the text out of the source code.(gets rid of javascript/meta/css/...)
-        plain_text = source_code.text
-        # change the source code to a BeautifulSoup object
-        soup = BeautifulSoup(plain_text)
-        # soup.findAll  finds an element with a specific attribute inside the object.
-        for link in soup.findAll('a', {'rel': 'bookmark'}):
-            # .get('href')  gets what is inside the href element
-            href = link.get('href')
-            # .string gets what is inside the a tag (the text that is inside it)
-            title = link.string
-            #print(title)
-            #print(href)
-            get_single_item_data(href)
-        page += 1
-
-def get_single_item_data(item_url):
-    source_code = requests.get(item_url)
-    plain_text = source_code.text
-    soup = BeautifulSoup(plain_text)
-    #for item_name in soup.findAll('img', {'class': 'aligncenter'}):
-       # img_src = item_name.get('src')
-      #  print(img_src)
-    for link in soup.findAll('a'):
-        href = link.get('href')
-        print(href)
-
-#trade_spider(3)
-get_single_item_data("http://mihandownload.com/2014/11/displayfusions-pro.php")
-
-# download text from a web page and get all actual words from that tex
-# operator class lets you to work with data types in python.
-import operator
-
-def start(url):
-    word_list = []
-    source_code = requests.get(url).text
-    soup = BeautifulSoup(source_code)
-    for post_text in soup.findAll('a', {'class': 'post-title'}):
-        content = post_text.string
-        # .lower() = lower cases all of the words.
-        # .split() = splits all words by space.
-        words = content.lower().split()
-        # loop through words and save it's items in a list.
-        ''' each "words" is list of each_word in each sentence.
-         but at the end the words_list becomes a big loop of all of each_words in all "words". (here we have two for loops) '''
-        for each_word in words:
-            word_list.append(each_word)
-    clean_words(word_list)
-
-def clean_words(word_list):
-    clean_list = []
-    for word in word_list:
-        symbols = "!@#$%^&*()_-+='';:\"{}[].,<>|?/"
-        for i in range(0, len(symbols)):
-            # replace() function replaces something with other thing in a string.
-            word = word.replace(symbols[i], "")
-        if len(word) > 0:
-            clean_list.append(word)
-    create_dic(clean_list)
-
-def create_dic(clean_list):
-    # dictionary
-    word_count = {}
-    for word in clean_list:
-        # if the word is already available in the word_count.
-        if word in word_count:
-            # word_count[key] = value.
-            word_count[word] += 1
-        else:
-            word_count[word] = 1
-    # sorting the dictionary based on numerical values, we loop through our dic.
-    ''' sorted() gets what we want to sort, here it is the dictionary items and second parameter is name key
-    (different with key,value)that get the way we want to sort out(by key items or value items). operator.itemgetter(0)
-    sorts by key and operator.itemgetter(1) sorts by value. '''
-    for key, value in sorted(word_count.items(), key=operator.itemgetter(1)):
-        print(key, " : ", value
-
-start("https://www.thenewboston.com/forum/")
-
-# PIL library to work with pictures in python :
-from PIL import Image
-# how to open a image and save it in an Image class object.
-img = Image.open("bobby.jpg")
-# img.size = width and height of the image in a topple (w, h).
-print(img.size)
-# img.format = format of the image.
-print(img.format)
-# shows the image in your
-img.show()
-
-######################### Python + Postgres ##########################
-# pip install psycopg2 => engine to connect from python to postgres
-
-import sqlalchemy as db
-
-# engine = db.create_engine('dialect+driver://user:pass@host:port/db')
-engine = db.create_engine("postgres://postgres:pass@localhost:5432/test")
-connection = engine.connect()
-metadata = db.MetaData()
-
-# loading a table from the database
-person = db.Table('person', metadata, autoload=True, autoload_with=engine)
-print(person.columns.keys())
-
-# print metadata about person table
-print(repr(metadata.tables['person']))
-
-# Querying
-# equivalant to "SELECT * FROM person"
-query = db.select([person])
-ResultProxy = connection.execute(query)
-Resultset = ResultProxy.fetchall()
-print(Resultset)
-
-# dealing with large dataset and memory problems
-flag = True
-while flag:
-    partial_results = ResultProxy.fetchmany(50)
-    if partial_results == []:
-        flag = False
-        # do data manipulation here
-            
-ResultProxy.close()
-
-# convert to a dataframe
-import pandas as pd
-
-df = pd.DataFrame(Resultset)
-df.columns = Resultset[0].keys()
-print(df)
-
-# Filtering Data
-# select * from person where car_uid is not NULL;
-query = db.select([person]).where(person.columns.car_uid != None)
-ResultProxy = connection.execute(query)
-Resultset = ResultProxy.fetchall()
-print(Resultset)
-
-# IN
-query = db.select([person.columns.last_name])\
-        .where(person.columns.first_name.in_(['Alex', 'bob']))
-
-ResultProxy = connection.execute(query)
-Resultset = ResultProxy.fetchall()
-Resultset
-
-# RAW SQL with sqlAlchemy
-res = engine.execute("SELECT * FROM person WHERE first_name != 'Alex'")
-for r in res:
-    print(r)
 
 ######################### Subprocess ##########################
 # we can use subprocess module to run external commands via python it is very easy to handle shell scripting code 
@@ -2344,5 +2133,75 @@ if len(my_list) >= 6:
 try:
     print(my_list[5])
 except IndexError:
-    print("index not in the list")                      
+    print("index not in the list")     
+              
+# How to activate an Anaconda environment?
+# create an environment called py33 by using:
+conda create -n py33 python=3.3 anaconda
+# set the PATH as:
+set PATH=C:\Anaconda\envs\py33\Scripts;C:\Anaconda\envs\py33;%PATH%
+# inside the cmd:
+activate py33
+# in linux/mac:
+source activate py33
+    
+# Check if a given key already exists in a dictionary
+d = {"key1": 10, "key2": 23}
+
+if "key1" in d:
+    print("this will execute")
+
+if "nonexistent key" in d:
+    print("this will not")
+              
+# Creating password using Python passlib
+# first install the package
+sudo pip install passlib
+# import the hash algorithm
+from passlib.hash import sha256_crypt
+# generate new salt, and hash a password
+hash = sha256_crypt.encrypt("toomanysecrets")
+print(hash)
+      
+# Are multiple classes in a single file recommended?
+'''
+Python is not exclusively class-based - the natural unit of code decomposition in Python is the module. Modules are just as likely to contain functions 
+(which are first-class objects in Python) as classes. In Java, the unit of decomposition is the class. Hence, Python has one module=one file, and Java has one (public) 
+class=one file.
+
+Python is much more expressive than Java, and if you restrict yourself to one class per file (which Python does not prevent you from doing) you will end up with lots of very 
+small files - more to keep track of with very little benefit.
+
+even more important is that in Python, you don't use classes for every- thing; if you need factories, singletons, multiple ways to create objects, polymorphic helpers, etc, you use plain functions, not classes or static methods.
+
+once you've gotten over the "it's all classes", use modules to organize things in a way that makes sense to the code that uses your components.
+make the import statements look good.
+'''
+
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
               
