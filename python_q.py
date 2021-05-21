@@ -773,6 +773,19 @@ for i in range(len(s)):
         prev_letter = letter
         
 ######################################################################
+# UnicodeDecodeError: 'utf-8' codec can't decode byte 0xe9 in position 2892: invalid continuation byte
+for line in open('u.item'):
+    # Read each line
+    pass
+
+# solution
+'''
+the right encoding for that problem. The encoding was "ISO-8859-1", so replacing open("u.item", encoding="utf-8") with 
+open('u.item', encoding = "ISO-8859-1") will solve the problem.
+'''
+file = open('../Resources/' + filename, 'r', encoding="ISO-8859-1");
+
+######################################################################
 
 '''
 *** What is Python?
