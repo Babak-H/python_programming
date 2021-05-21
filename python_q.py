@@ -736,6 +736,44 @@ print (algorithmone(5,233,676))
 
 ######################################################################
 
+# IndexError: string index out of range in Python [closed]
+s = 'aba'
+letter = ''
+substring = ''
+
+i = 0
+
+while(i <= len(s)):    # here is the error: Change while(i <= len(s): to while(i < len(s)):, or to while(i <= len(s)-1)
+    prev_letter = s[0]
+    letter = s[i]
+
+    if letter <= prev_letter:
+        substring += letter
+        prev_letter = letter
+    i += 1
+
+'''
+In Python, a string is a single-dimensional array of characters. Indexes in Python programming start at 0. This means that the maximum index for any string will always 
+be len(s)-1. In your code, i will eventually be equal to len(s), which is one element higher than the maximum.
+As a side note, it would probably be beneficial to use a for loop rather than a while loop in your code. Your code can be replaced with this:
+''''
+# a better solution would be :
+s = 'aba'
+letter = ''
+substring = ''
+
+i = 0
+
+for i in range(len(s)):
+    prev_letter = s[0]
+    letter = s[i]
+
+    if letter <= prev_letter:
+        substring += letter
+        prev_letter = letter
+        
+######################################################################
+
 '''
 *** What is Python?
 Python is a programming language with objects, modules, threads, exceptions, and automatic memory management. The
