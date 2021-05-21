@@ -35,9 +35,7 @@ print(sorted_num)
 print(sorted_word)
 
 #######################################################
-
 # doc string
-
 
 def square(x):
     """Returns the square of the argument x"""
@@ -71,7 +69,6 @@ list(zip(list_keys, list_values))  # [('a', ['x', 'y']), ('b', [1, 2])]
 given a timestamp date "2019-07-01 12:42:33" return string of "19Jul1B"
 hours : 0-7 A 7-14 B 14-21 C 21-24 D  it should be the shown after start of the hour (7:00:01 accepted)
 '''
-
 
 def DateChecker(timestamp):
     date = re.match(
@@ -169,7 +166,6 @@ def euclideanDistance(inst1, inst2):
 print(euclideanDistance(x, y))
 
 #######################################################
-
 # if a character in string is lower case make it upper and vice versa then return the string
 
 
@@ -188,7 +184,6 @@ result = swap_case(s)
 print(result)
 
 #######################################################
-
 # how many times a string occurs in a substring:
 
 
@@ -246,7 +241,6 @@ except Exception as e:
 
 #######################################################
 
-
 class BetterDate:
     # Constructor
     def __init__(self, year, month, day):
@@ -254,7 +248,6 @@ class BetterDate:
         self.year, self.month, self.day = year, month, day
 
 #######################################################
-
 
 class Counter:
     def __init__(self, count):
@@ -268,7 +261,6 @@ class Indexer(Counter):  # this will cause an error as we don't pass anything to
     pass
 
 #######################################################
-
 
 class LoggedDF(pd.DataFrame):
 
@@ -285,7 +277,6 @@ class LoggedDF(pd.DataFrame):
         pd.DataFrame.to_csv(temp, *args, **kwargs)
 
 #######################################################
-
 
 class BankAccount:
     # MODIFY to initialize a number attribute
@@ -314,7 +305,6 @@ print(acct1 == acct3)
 
 #######################################################
 
-
 class Parent:
     def __eq__(self, other):
         print("Parent's __eq__() called")
@@ -340,7 +330,6 @@ f = "my_num is {}, and my_str is \"{}\".".format(my_num, my_str)
 print(f)  # my_num is 5, and my_str is "Hello".
 
 #######################################################
-
 # MODIFY the function to catch exceptions
 
 
@@ -363,7 +352,6 @@ print(invert_at_index(a, 2))
 print(invert_at_index(a, 5))
 
 #######################################################
-
 # custom Exception class
 
 
@@ -416,7 +404,6 @@ except SalaryError:
 
 #######################################################
 
-
 class BetterDate:
 
     _MAX_DAYS = 30
@@ -446,7 +433,6 @@ print(bd2._is_valid())
 
 #######################################################
 
-
 class Customer:
     def __init__(self, name, new_bal):
         self.name = name
@@ -475,7 +461,6 @@ cust.balance = 3000
 print(cust.balance)
 
 #######################################################
-
 # MODIFY the class to use _created_at instead of created_at
 
 
@@ -504,7 +489,6 @@ ldf = LoggedDF({"col1": [1, 2], "col2": [3, 4]})
 ldf.created_at = '2035-07-13'
 
 #######################################################
-
 # Frequency Counter (inside an String)
 
 
@@ -531,7 +515,6 @@ def freq_counter_b(s) -> str:
 
 
 ####################### tests for the two functions above ##########################
-
 
 @pytest.mark.parametrize('inp, res', [
     ("a bb ccc", "cccbba"),
@@ -590,7 +573,6 @@ def test_counter_freq_b_raise_exception():
 
 ######################################################################
 
-
 def func():
     # print(a)
     a = "python is cool"
@@ -609,7 +591,6 @@ a = "data analytics is good"
 func_1()   # python is cool
 
 ######################################################################
-
 
 def wrap():
     def inside():
@@ -630,7 +611,6 @@ print("Language in global scope: " + lang)  # Language in global scope: German
 
 ######################################################################
 
-
 def wrap():
     lang = "Polish"
 
@@ -650,7 +630,6 @@ wrap()
 print("Language in global scope: " + lang)
 
 ######################################################################
-
 
 def catch_it(a):
 
@@ -680,7 +659,6 @@ catch_it(a)
 
 ######################################################################
 
-
 def result_or_fail(a):
 
     try:
@@ -708,7 +686,6 @@ a = '2'
 result_or_fail(a)
 
 ######################################################################
-
 
 def make_bold(fn):
 
@@ -741,6 +718,7 @@ def hello():
 print(hello())  # <b><u><i>Python 3 is superb</i></u></b>
 
 ######################################################################
+
 def algorithmone(n,b,a):
      assert(b > 1)
      q = n
@@ -755,18 +733,6 @@ def algorithmone(n,b,a):
 print (algorithmone(5,233,676))
 
 # what error will this code produce  => TypeError: 'int' object does not support item assignment, because: 50[42] = 7
-
-
-
-
-
-
-
-
-
-
-
-
 
 ######################################################################
 
