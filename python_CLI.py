@@ -1,5 +1,3 @@
-# https://realpython.com/command-line-interfaces-python-argparse/
-
 import argparse
 import os
 import sys
