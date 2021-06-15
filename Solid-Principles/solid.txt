@@ -1,0 +1,35 @@
+Solid is the methodology for creating maintainable and testable code.
+its an acronym coined by author Robert Martin (uncle Bob)
+
+S => single responsibility principle
+- a class should have only one job
+- make code easier to implement
+- class should implement strongly related logic
+- make code more usable
+
+O => open-closed principle
+- code is open for extension, but closed for modification
+- design a class that you should be able to extend without modification
+- behavior can be extended, behavior in new different way
+- achieved through abstraction
+- use interfaces, pass interface to a class instead of the class that implements the interface
+- using interfaces allows you to EXTEND code and stops you from changing code that is set in stone
+
+L => liskov substitution principle
+- a derived class should be substitutable for its base class -> if a dog is a subtype of animal, dog
+may be replaced with animal without resulting in unexpected behavior.
+- square example => in mathematics square is a type of rectangle, but in programming it is not.
+- you can set width and height of rectangle but square needs to have equal sides.
+- square can NOT be extended from the rectangle
+- solution -> make sure square doesn't inherit from rectangle
+
+I => interface segregation principle
+- interface should be kept small
+- classes shouldn't implement interfaces they don't need
+- defining functions that you don't need in interface is code pollution
+- fat interfaces should be broken down to role interfaces
+- role interfaces are behavior specific interfaces
+
+D => dependency injection principle
+- depends on abstraction rather than concretion
+- inject interface instead of classes.
