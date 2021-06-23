@@ -2177,14 +2177,115 @@ once you've gotten over the "it's all classes", use modules to organize things i
 make the import statements look good.
 '''
 
+# where does anaconda python install in windows?
+'''
+
+To find where Anaconda was installed I used the "where" command on the command line in Windows.
+
+C:\>where anaconda
+which for me returned:
+
+C:\Users\User-Name\AppData\Local\Continuum\Anaconda2\Scripts\anaconda.exe
+'''
+
+# Simplify Chained Comparison
+if start <= x <= end:
+    pass
+# or
+r = range(start, end + 1) # (!) if integers
+if x in r:
+    pass
+
+# How to make a variable inside a try/except block public?
+text = 'something'  # define it before the try-except or in else block
+try:
+    url = "http://www.google.com"
+    page = urllib.request.urlopen(url)
+    text = page.read().decode('utf8')
+except (ValueError, RuntimeError, TypeError, NameError):
+    print("Unable to process your request dude!!")
+
+print(text)
               
               
+# What is the meaning of “Failed building wheel for X” in pip install?
+'''
+If the package is not a wheel, pip tries to build a wheel for it (via setup.py bdist_wheel). If that fails for any reason, you get the "Failed building wheel for pycparser" message and pip falls back to installing directly (via setup.py install).
+
+Once we have a wheel, pip can install the wheel by unpacking it correctly. pip tries to install packages via wheels as often as it can. This is because of various advantages of using wheels (like faster installs, cache-able, not executing code again etc).
+'''
+
+# how to specify new environment location for conda create?
+
+# Will create the environment named /tmp/test-env which resides in /tmp/ instead of the default .conda
+conda create --prefix /tmp/test-env python=3.7
+
+
+#  How to group dataframe rows into list in pandas groupby?
+'''
+a b
+A 1
+A 2
+B 5
+B 5
+B 4
+C 6
+
+A [1,2]
+B [5,5,4]
+C [6]
+'''
+df = pd.DataFrame( {'a':['A','A','B','B','B','C'], 'b':[1,2,5,5,4,6]})
+df.groupby('a')['b'].apply(list)
+df1 = df.groupby('a')['b'].apply(list).reset_index(name='new')
               
-              
-              
-              
-              
-              
+
+# python dataframe pandas drop column using int
+df.drop(df.columns[i], axis=1)
+
+# Add column in dataframe from list
+import numpy as np
+m = np.arange(16) * 10
+m[df.A]
+array([  0,  40,  50,  60, 150, 150, 140, 130])
+df["D"] = m[df.A]
+
+# How to change the Jupyter start-up folder
+'''
+Use the jupyter notebook config file:
+Open cmd (or Anaconda Prompt) and run jupyter notebook --generate-config.
+This writes a file to C:\Users\username\.jupyter\jupyter_notebook_config.py.
+Browse to the file location and open it in an Editor
+Search for the following line in the file: #c.NotebookApp.notebook_dir = ''
+Replace by c.NotebookApp.notebook_dir = '/the/path/to/home/folder/'
+Make sure you use forward slashes in your path and use /home/user/ instead of ~/ for your home directory, backslashes could be used if placed in double quotes even if folder name contains spaces as such : "D:\yourUserName\Any Folder\More Folders\"
+Remove the # at the beginning of the line to allow the line to execute
+'''
+
+# python @abstractmethod decorator
+'''
+You can apply the @abstractmethod decorator to methods such as draw() that must be implemented; Python will then raise an exception for classes that don’t define the method. Note that the exception is only raised when you actually try to create an instance of a subclass lacking the method.
+'''
+import abc
+
+class AbstractClass(metaclass=abc.ABCMeta):
+    @abc.abstractmethod
+    def abstractMethod(self):
+        return
+
+class ConcreteClass(AbstractClass):
+    def __init__(self):
+        self.me = "me"
+
+# Will get a TypeError without the following two lines:
+#   def abstractMethod(self):
+#       return 0
+c = ConcreteClass()
+c.abstractMethod()
+
+'''
+If abstractMethod is not defined for ConcreteClass, the following exception will be raised when running the above code: TypeError: Can't instantiate abstract class ConcreteClass with abstract methods abstractMethod
+'''          
               
               
               
