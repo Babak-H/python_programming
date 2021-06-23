@@ -2288,7 +2288,24 @@ If abstractMethod is not defined for ConcreteClass, the following exception will
 '''          
               
               
-              
+# fnmatch => unix filename pattern matching
+'''
+This module provides support for Unix shell-style wildcards, which are not the same as regular expressions (which are documented in the re module). The special characters used in shell-style wildcards are:
+
+Pattern     Meaning
+
+*  =>  matches everything
+?  => matches any single character
+[seq]  => matches any character in seq
+[!seq]  =>matches any character not in seq
+'''
+
+import fnmatch
+import os
+
+for file in os.listdir('.'):
+    if fnmatch.fnmatch(file, '*.txt'):
+        print(file)
               
               
               
