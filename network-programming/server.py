@@ -38,7 +38,6 @@ def handle_client(conn, addr):
         
     conn.close()
 
-
 # listen for connection requests and handle them
 def start():
     server.listen()
