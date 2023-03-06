@@ -59,8 +59,6 @@ add_employee_fixed('John')
 print(add_employee_fixed.__defaults__)
 
 
-
-
 class Geeks:
     def __init__(self, name1="Bob", num2=26, name3="Gohardani"):
         self.name1 = name1
