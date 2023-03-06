@@ -25,7 +25,6 @@ def send(msg):
     # message that we get from the server / we set an arbitrary large number, so server doesn't need to send us back a header too.
     print(client.recv(2048).decode(FORMAT))
     
-
 send("Hello World!!")
 send("Hi its Babak")
 send(DISCONNECT_MESSAGE)
