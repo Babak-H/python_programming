@@ -29,5 +29,3 @@ def send(msg):
 send("Hello World!!")
 send("Hi its Babak")
 send(DISCONNECT_MESSAGE)
-    
-    
