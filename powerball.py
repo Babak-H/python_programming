@@ -84,9 +84,3 @@ print(f'Spent: {total_spent}')
 print(f'Earnings: {earnings}')
         
 print(json.dumps(times_won, indent=2))
-    
-    
-    
-    
-    
-    
