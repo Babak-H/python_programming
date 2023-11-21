@@ -446,3 +446,33 @@ df["Overdue_BM"] = [*map(lambda x, y, z: "Yes" if (x == "Yes" or y == "Yes") els
                          "-" else y), df["Overdue_Y_N"], df["NetDueDate_PIA_before_today"], df["ClearDate_PIA"])]
 
 pd.unique(df["Overdue_BM"] == df["OverDue_PIA"])
+
+#======================================================
+#  How to group dataframe rows into list in pandas groupby?
+'''
+a b
+A 1
+A 2
+B 5
+B 5
+B 4
+C 6
+
+A [1,2]
+B [5,5,4]
+C [6]
+'''
+df = pd.DataFrame({'a': ['A', 'A', 'B', 'B', 'B', 'C'], 'b': [1, 2, 5, 5, 4, 6]})
+df.groupby('a')['b'].apply(list)
+df1 = df.groupby('a')['b'].apply(list).reset_index(name='new')
+
+# python dataframe pandas drop column using int
+df.drop(df.columns[i], axis=1)
+
+# Add column in dataframe from list
+import numpy as np
+
+m = np.arange(16) * 10
+m[df.A]
+array([0, 40, 50, 60, 150, 150, 140, 130])
+df["D"] = m[df.A]
