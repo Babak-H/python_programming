@@ -1,0 +1,30 @@
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+<p>Rate of {{currency}} compared to PLN in last 7 days</p>
+<table>
+    <tr>
+      <th>Date</th>
+      <th>Rate</th>
+    </tr>
+    {% for k,v in dic.items() %}
+        <tr>
+            <td>{{k}}</td>
+            <td>{{v}}</td>
+        </tr>
+    {% endfor %}
+  </table>

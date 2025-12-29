@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Rate Control</title>
+  </head>
+  <body>
+    {% extends "template.html" %}
+    {% block content %}
+
+    <main role="main" class="container">
+        <div class="jumbotron">
+            <form method="POST" action="">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">please input the amount of money that you want to buy or sell : </label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="pln_amount" placeholder="Amount of currency in digits">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Choose the currency</label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="curr">
+                      {% for opt in options %}
+                        <option value={{opt}}>{{opt}}</option>
+                      {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Select if you want to sell or buy :</label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="type">
+                      <option value="sell">Sell</option>
+                      <option value="buy">Buy</option>
+                    </select>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+            </form>
+        </div>
+      </main>
+
+    {% endblock %}
+  </body>
+</html>
+
+
+
+

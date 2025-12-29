@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>{{curr}} Chart</title>
+</head>
+
+<body>
+    {% extends "template.html" %}
+    {% block content %}
+
+    <main role="main" class="container">
+        <div class="jumbotron">
+            <p class="lead"><svg class="bar-chart"></svg></p>
+            <a href="/pdf_template/{{curr}}" class="list-group-item list-group-item-action flex-column align-items-start">
+                <p class="mb-1">print the data from the changes of {{curr}} currency for last 7 days</p>
+            </a>
+        </div>
+    </main>
+
+
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script>
+        var ds = [];
+
+        '{% for k in rates %}'
+        ds.push(parseFloat("{{k}}"))
+        ' {% endfor %}'
+
+        // since the change in the currency value is not very significant, we subtract the min value from all elements of list to make the change more significant
+        dataset = ds.map((d) => (d - d3.min(ds)) + (0.001 * d3.min(ds)));
+
+        var svgWidth = 500, svgHeight = 300, barPadding = 5;
+        var barWidth = (svgWidth / dataset.length);
+
+        var svg = d3.select("svg")
+            .attr("width", svgWidth)
+            .attr("height", svgHeight);
+
+        var yScale = d3.scaleLinear().domain([0, d3.max(dataset)]).range([0, svgHeight])
+
+        var barChart = svg.selectAll("rect")
+            .data(dataset)
+            .enter()
+            .append("rect")
+            .attr("y", function (d) {
+                return svgHeight - yScale(d)
+            })
+            .attr("height", function (d) {
+                return yScale(d);
+            })
+            .attr("width", barWidth - barPadding)
+            .attr("transform", function (d, i) {
+                var translate = [barWidth * i, 0];
+                return "translate(" + translate + ")";
+            }).attr("fill", "yellow");
+
+        var text = svg.selectAll("text")
+            .data(dataset)
+            .enter()
+            .append("text")
+            .text(function (d) {
+                return Math.round((d + d3.min(ds)) * 10000) / 10000;
+            })
+            .attr("y", function (d) {
+                return svgHeight - yScale(d) + 20;
+            })
+            .attr("x", function (d, i) {
+                return barWidth * i + barWidth / 10;
+            })
+            .attr("fill", "red");
+    </script>
+    {% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Rate Control</title>
+  </head>
+  <body>
+    {% extends "template.html" %}
+    {% block content %}
+
+    <main role="main" class="container">
+            <ul class="list-group">
+                {% for k,v in list_rates.items() %}
+                  <a href="chart/{{k}}" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h5 class="mb-1">{{k}} {{v}} for 1 PLN.</h5>
+                    </div>
+                    <p class="mb-1">See the chart for {{k}} changes during last 7 days</p>
+                  </a>
+                {% endfor %}
+              </ul>
+      </main>
+    {% endblock %}
+  </body>
+</html>
