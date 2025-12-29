@@ -1,0 +1,17 @@
+[
+  {
+    "Phone Number": "1234561234",
+    "Zip Code": "10043",
+    "Company Email": "johnsmith@comp.com",
+    "Salary": 60900,
+    "First Name": "John",
+    "Last Name": "Smith",
+    "Date Of Birth (mm/dd/yyyy)": "1/06/1967",
+    "Address Line 1": "199 water street",
+    "Address Line 2": "Fl 34",
+    "City": "New york",
+    "State": "WA",
+    "Job Title": "Sales representative",
+    "Job ID": "SA_REP"
+  }
+]

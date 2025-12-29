@@ -1,0 +1,47 @@
+[
+  {
+    "Phone Number": "1234561234",
+    "Zip Code": "10043",
+    "Company Email": "johnsmith@comp.com",
+    "Salary": 60900,
+    "First Name": "John",
+    "Last Name": "Smith",
+    "Date Of Birth (mm/dd/yyyy)": "1/06/1967",
+    "Address Line 1": "199 water street",
+    "Address Line 2": "Fl 34",
+    "City": "New york",
+    "State": "WA",
+    "Job Title": "Sales representative",
+    "Job ID": "SA_REP"
+  },
+  {
+    "Phone Number": "1234561234",
+    "Zip Code": "10043",
+    "Company Email": "leslyjones@comp.com",
+    "Salary": 63000,
+    "First Name": "Lesly",
+    "Last Name": "Jones",
+    "Date Of Birth (mm/dd/yyyy)": "5/18/1979",
+    "Address Line 1": "199 water street",
+    "Address Line 2": "Fl 34",
+    "City": "New york",
+    "State": "TX",
+    "Job Title": "Sales manager",
+    "Job ID": "SA_MNG"
+  },
+  {
+    "Phone Number": "1234561234",
+    "Zip Code": "10043",
+    "Company Email": "elliedavis@comp.com",
+    "Salary": 71050,
+    "First Name": "Ellie",
+    "Last Name": "Davis",
+    "Date Of Birth (mm/dd/yyyy)": "3/21/1998",
+    "Address Line 1": "199 water street",
+    "Address Line 2": "Fl 34",
+    "City": "New york",
+    "State": "NY",
+    "Job Title": "Hr representative",
+    "Job ID": "HR_REP"
+  }
+]
