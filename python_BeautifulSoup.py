@@ -1,4 +1,3 @@
-######################## BeautifulSoup ########################
 # given a url, download every link available on that page
 from PIL import Image
 import operator

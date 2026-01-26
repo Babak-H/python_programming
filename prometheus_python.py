@@ -6,6 +6,7 @@ import time
 from logging import getLogger
 import os
 
+
 MD_URL = "http://localhost:8008"
 PREFIX = 'metadefender'
 ENV = "alpha"
